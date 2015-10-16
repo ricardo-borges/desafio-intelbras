@@ -2,7 +2,7 @@
 
 Escrever um webservice na linguagem de sua preferência que deva atender os requisitos abaixo:
 
-* Receber um GET na url /api/device:
+* Receber um GET na url /api/device
 	* Lê um arquivo e retorna o seu contêudo no formato json.
 	
 	
@@ -11,7 +11,7 @@ Escrever um webservice na linguagem de sua preferência que deva atender os requ
 	conteudo criado
 	```
 	
-	retorno à partir do arquivo:
+	retorno à partir do arquivo
 	```
 	{
 		date: data atual,
@@ -19,7 +19,7 @@ Escrever um webservice na linguagem de sua preferência que deva atender os requ
 	}
 	```
 
-* Receber um POST na url /api/device:
+* Receber um POST na url /api/device
 	* Cria o arquivo com o conteudo do JSON: 
 	```
 	{
@@ -33,7 +33,7 @@ Escrever um webservice na linguagem de sua preferência que deva atender os requ
 	conteudo criado
 	```
 
-* Receber um PUT na url /api/device:
+* Receber um PUT na url /api/device
 	* Receber um JSON no formato abaixo e gravar o 'novo conteúdo' no arquivo se este já existir
 	```
 	{
@@ -46,7 +46,7 @@ Escrever um webservice na linguagem de sua preferência que deva atender os requ
 	novo conteúdo
 	```
 
-* Receber um DELETE na url /api/device:
+* Receber um DELETE na url /api/device
 	* Deve remover o arquivo e não retornar dados
 
 
