@@ -1,6 +1,6 @@
 # Desafio intelbras
 
-Escrever um webservice em sua linguagem de sua preferência que deva atender os requisitos abaixo:
+Escrever um webservice na linguagem de sua preferência que deva atender os requisitos abaixo:
 
 * Receber um GET na url /api/device:
 	* Lê um arquivo e retorna o seu contêudo no formato json.
