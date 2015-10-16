@@ -51,3 +51,5 @@ Escrever um webservice na linguagem de sua preferência que deva atender os requ
 
 
 O Webserver deve respeitar as boas praticas do padrão REST usando a rfc2616
+
+***Bonus:*** se usar testes unitários.
