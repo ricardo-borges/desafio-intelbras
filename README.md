@@ -1,22 +1,50 @@
 # desafio-intelbras
 
-Escrever um webserver em sua lingugagem de preferencia que deva atender os requisitos abaixo:
+Escrever um webservice em sua linguagem de sua preferência que deva atender os requisitos abaixo:
 
 * Receber um GET na url /api/device:
-	* Le um arquivo e retorna o seu conteudo em um json. ```{ data: "conteudo do arquivo"}```
+	* Lê um arquivo e retorna o seu contêudo no formato json.
+	
+	
+	```
+	cat arquivo.txt
+	conteudo criado
+	```
+	
+	retorno à partir do arquivo:
+	```
+	{
+		date: data atual,
+		conteudo: "conteúdo criado",
+	}
+	```
 
 * Receber um POST na url /api/device:
 	* Cria o arquivo com o conteudo do JSON: 
-	* 
-```
-{
-	date: 12/09/1985,
-	conteudo: "conteudo criado",
-}
-```
+	```
+	{
+		date: 12/09/1985,
+		conteudo: "conteúdo criado",
+	}
+	```
+	
+	Formato arquivo salvo:
+	```
+	conteudo criado
+	```
 
 * Receber um PUT na url /api/device:
-	* Recebe um JSON no formato ```{data:"novo conteudo"}``` e deve gravar o 'novo conteudo' no arquivo
+	* Recebe um JSON no formato e deve gravar o 'novo conteúdo' no arquivo
+	```
+	{
+		date: 12/09/1985,
+		conteudo: "novo conteúdo",
+	}
+	```
+	Formato arquivo salvo:
+	```
+	novo conteúdo
+	```
 
 * Receber um DELETE na url /api/device:
 	* Deve remover o arquivo e não retornar dados
