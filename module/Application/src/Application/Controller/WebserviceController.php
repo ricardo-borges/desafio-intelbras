@@ -24,14 +24,24 @@ class WebserviceController extends AbstractRestfulController
     }
  
     public function get($id)
-    {		
-    	$file = fopen("data/file/arquivo.txt", "r") or die("Unable to open file!");
-        $conteudo = fread($file, filesize("data/file/arquivo.txt"));
-		fclose($file);
+    {
+    	$data = array();
+			
+    	if (file_exists("data/file/arquivo.txt")){
+        	$file = fopen("data/file/arquivo.txt", "r");	
+	        $conteudo = fread($file, filesize("data/file/arquivo.txt"));
+			fclose($file);
+			
+			$data = array(
+				'date' => date(DATE_RFC822),
+	        	'conteudo' => $conteudo
+			);
+		}else{
+			$data = "Arquivo não encontrado";
+		}
 		
         return new JsonModel(array(
-            'date' => date(DATE_RFC822),
-	        'conteudo' => $conteudo
+            $data
 	    ));
     }
  
@@ -52,12 +62,16 @@ class WebserviceController extends AbstractRestfulController
  
     public function update($id, $data)
     {
-        $file = fopen("data/file/arquivo.txt", "w");
-		
-		if($file){
-			$conteudo = $data['conteudo'] ."\n" .$data['date'];
-	    	fwrite($file, $conteudo);
-			fclose($file);
+    	if (file_exists("data/file/arquivo.txt")){
+        	$file = fopen("data/file/arquivo.txt", "w");	
+				
+			if($file){
+				$conteudo = $data['conteudo'] ."\n" .$data['date'];
+		    	fwrite($file, $conteudo);
+				fclose($file);
+			}
+		}else{
+			$data['conteudo'] = "Arquivo não encontrado";
 		}
 		
         return new JsonModel(array(
@@ -67,8 +81,18 @@ class WebserviceController extends AbstractRestfulController
  
     public function delete($id)
     {
-        return new JsonModel(array(
-	        'data' => "testeDelete"
-	    ));
+    	$data = "";
+    	
+        if (file_exists("data/file/arquivo.txt")){
+        	unlink("data/file/arquivo.txt");
+			die();
+		}else{
+			$data['conteudo'] = "Arquivo não encontrado";
+			return new JsonModel(array(
+				$data
+			));
+		}
+		
+        
     }
 }
