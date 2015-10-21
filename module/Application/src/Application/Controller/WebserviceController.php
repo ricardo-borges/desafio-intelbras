@@ -37,10 +37,13 @@ class WebserviceController extends AbstractRestfulController
  
     public function create($data)
     {    	
-		$file = fopen("data/file/arquivo.txt", "w") or die("Unable to open file!");	
-		$conteudo = $data['conteudo'] ."\n" .$data['date'];
-    	fwrite($file, $conteudo);
-		fclose($file);
+		$file = fopen("data/file/arquivo.txt", "w");
+		
+		if($file){
+			$conteudo = $data['conteudo'] ."\n" .$data['date'];
+	    	fwrite($file, $conteudo);
+			fclose($file);
+		}
 		
         return new JsonModel(array(
             'data' => $data
@@ -49,8 +52,16 @@ class WebserviceController extends AbstractRestfulController
  
     public function update($id, $data)
     {
+        $file = fopen("data/file/arquivo.txt", "w");
+		
+		if($file){
+			$conteudo = $data['conteudo'] ."\n" .$data['date'];
+	    	fwrite($file, $conteudo);
+			fclose($file);
+		}
+		
         return new JsonModel(array(
-	        'data' => "testeUpdate"
+            'data' => $data
 	    ));
     }
  
