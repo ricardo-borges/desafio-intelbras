@@ -19,21 +19,29 @@ class WebserviceController extends AbstractRestfulController
     public function getList()
     {
         return new JsonModel(array(
-	        'data' => "testeList"
+	        'data' => "testeGetList"
 	    ));
     }
  
     public function get($id)
-    {
+    {		
+    	$file = fopen("data/file/arquivo.txt", "r") or die("Unable to open file!");
+        $conteudo = fread($file, filesize("data/file/arquivo.txt"));
+		fclose($file);
+		
         return new JsonModel(array(
-	        'data' => "testeGet"
+            'date' => date(DATE_RFC822),
+	        'conteudo' => $conteudo
 	    ));
     }
  
     public function create($data)
     {
+    	//print_r($data); exit();
+    	//$file = fopen("data/file/arquivo.txt", "w");
+		
         return new JsonModel(array(
-	        'data' => "testeCreate"
+            'data' => $data
 	    ));
     }
  
