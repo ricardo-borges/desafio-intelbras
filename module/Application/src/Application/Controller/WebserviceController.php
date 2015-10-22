@@ -53,8 +53,9 @@ class WebserviceController extends AbstractRestfulController
 			$conteudo = $data['conteudo'] ."\n" .$data['date'];
 	    	fwrite($file, $conteudo);
 			fclose($file);			
-			$this->response->setStatusCode(200);
+			$this->response->setStatusCode(201);
 		}else{
+			$this->response->setStatusCode(204);
 			$data = "";	
 		}
 		
