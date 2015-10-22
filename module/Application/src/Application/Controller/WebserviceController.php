@@ -46,13 +46,16 @@ class WebserviceController extends AbstractRestfulController
     }
  
     public function create($data)
-    {    	
+    {	    	
 		$file = fopen("data/file/arquivo.txt", "w");
 		
 		if($file){
 			$conteudo = $data['conteudo'] ."\n" .$data['date'];
 	    	fwrite($file, $conteudo);
-			fclose($file);
+			fclose($file);			
+			$this->response->setStatusCode(200);
+		}else{
+			$data = "";	
 		}
 		
         return new JsonModel(array(
@@ -69,8 +72,10 @@ class WebserviceController extends AbstractRestfulController
 				$conteudo = $data['conteudo'] ."\n" .$data['date'];
 		    	fwrite($file, $conteudo);
 				fclose($file);
+				$this->response->setStatusCode(200);
 			}
 		}else{
+			$this->response->setStatusCode(501);
 			$data['conteudo'] = "Arquivo não encontrado";
 		}
 		
@@ -85,14 +90,14 @@ class WebserviceController extends AbstractRestfulController
     	
         if (file_exists("data/file/arquivo.txt")){
         	unlink("data/file/arquivo.txt");
-			die();
+			$this->response->setStatusCode(200);
+			$data;
 		}else{
-			$data['conteudo'] = "Arquivo não encontrado";
-			return new JsonModel(array(
-				$data
-			));
-		}
+			$data['conteudo'] = "Arquivo não encontrado";			
+		}       
 		
-        
+		return new JsonModel(array(
+			$data
+		));
     }
 }
